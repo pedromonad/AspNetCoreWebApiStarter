@@ -1,25 +1,23 @@
-# ASP.NET Core WebApi Sample
+# ASP.NET Core WebApi Starter
 
 In this repository I want to give a plain starting point at how to build a WebAPI with ASP.NET Core 1.0.
 
 This repository contains a controller which is dealing with houses. You can GET/POST/PUT and DELETE them.
 
-Hope this helps.
-
 See the examples here: 
 
 ## GET all users
 
-``` http://localhost:3000/api/user ```
+``` http://localhost:29435/api/user ```
 
 ## GET single house
 
-``` http://localhost:3000/api/user/1 ```
+``` http://localhost:29435/api/user/1 ```
 
 
 ## POST a user
 
-``` http://localhost:3000/api/house ```
+``` http://localhost:29435/api/house ```
 
 ````javascript
   {
@@ -38,7 +36,7 @@ See the examples here:
 
 ## PUT a user
 
-``` http://localhost:3000/api/user/5 ```
+``` http://localhost:29435/api/user/5 ```
 
 ````javascript
 {
@@ -57,6 +55,6 @@ See the examples here:
 
 ## DELETE a user
 
-``` http://localhost:3000/api/user ```
+``` http://localhost:29435/api/user ```
 
 
