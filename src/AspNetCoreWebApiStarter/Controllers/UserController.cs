@@ -3,22 +3,22 @@ using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using SampleWebApiAspNetCore.Models;
-using SampleWebApiAspNetCore.Repositories;
-using SampleWebApiAspNetCore.Services;
+using AspNetCoreWebApiStarter.Models;
+using AspNetCoreWebApiStarter.Repositories;
+using AspNetCoreWebApiStarter.Services;
 
-namespace SampleWebApiAspNetCore.Controllers
+namespace AspNetCoreWebApiStarter.Controllers
 {
     [Route("api/[controller]")]
-    public class HouseController : Controller
+    public class UserController : Controller
     {
-        private readonly IHouseMapper _houseMapper;
-        private readonly IHouseRepository _houseRepository;
+        private readonly IUserMapper _userMapper;
+        private readonly IUserRepository _userRepository;
 
-        public HouseController(IHouseMapper houseMapper, IHouseRepository houseRepository)
+        public UserController(IUserMapper userMapper, IUserRepository userRepository)
         {
-            _houseMapper = houseMapper;
-            _houseRepository = houseRepository;
+            _userMapper = userMapper;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -26,7 +26,7 @@ namespace SampleWebApiAspNetCore.Controllers
         {
             try
             {
-                return Ok(_houseRepository.GetAll().Select(x => _houseMapper.MapToDto(x)));
+                return Ok(_userRepository.GetAll().Select(x => _userMapper.MapToDto(x)));
             }
             catch (Exception exception)
             {
@@ -35,19 +35,19 @@ namespace SampleWebApiAspNetCore.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name = "GetSingleHouse")]
+        [HttpGet("{id:int}", Name = "GetSingleUser")]
         public IActionResult GetSingle(int id)
         {
             try
             {
-                HouseEntity houseEntity = _houseRepository.GetSingle(id);
+                UserEntity userEntity = _userRepository.GetSingle(id);
 
-                if (houseEntity == null)
+                if (userEntity == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(_houseMapper.MapToDto(houseEntity));
+                return Ok(_userMapper.MapToDto(userEntity));
             }
             catch (Exception exception)
             {
@@ -57,11 +57,11 @@ namespace SampleWebApiAspNetCore.Controllers
         }
 
         [HttpPatch("{id:int}")]
-        public IActionResult Patch(int id, [FromBody] JsonPatchDocument<HouseDto> housePatchDocument)
+        public IActionResult Patch(int id, [FromBody] JsonPatchDocument<UserDto> userPatchDocument)
         {
             try
             {
-                if (housePatchDocument == null)
+                if (userPatchDocument == null)
                 {
                     return BadRequest();
                 }
@@ -71,25 +71,25 @@ namespace SampleWebApiAspNetCore.Controllers
                     return BadRequest(ModelState);
                 }
 
-                HouseEntity houseEntity = _houseRepository.GetSingle(id);
+                UserEntity userEntity = _userRepository.GetSingle(id);
 
-                if (houseEntity == null)
+                if (userEntity == null)
                 {
                     return NotFound();
                 }
 
-                HouseDto existingHouse = _houseMapper.MapToDto(houseEntity);
+                UserDto existingUser = _userMapper.MapToDto(userEntity);
 
-                housePatchDocument.ApplyTo(existingHouse, ModelState);
+                userPatchDocument.ApplyTo(existingUser, ModelState);
 
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                _houseRepository.Update(_houseMapper.MapToEntity(existingHouse));
+                _userRepository.Update(_userMapper.MapToEntity(existingUser));
 
-                return Ok(existingHouse);
+                return Ok(existingUser);
             }
             catch (Exception exception)
             {
@@ -99,11 +99,11 @@ namespace SampleWebApiAspNetCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] HouseDto houseDto)
+        public IActionResult Create([FromBody] UserDto userDto)
         {
             try
             {
-                if (houseDto == null)
+                if (userDto == null)
                 {
                     return BadRequest();
                 }
@@ -113,11 +113,11 @@ namespace SampleWebApiAspNetCore.Controllers
                     return BadRequest(ModelState);
                 }
 
-                HouseEntity houseEntity = _houseMapper.MapToEntity(houseDto);
+                UserEntity userEntity = _userMapper.MapToEntity(userDto);
 
-                _houseRepository.Add(houseEntity);
+                _userRepository.Add(userEntity);
    
-                return CreatedAtRoute("GetSingleHouse", new { id = houseEntity.Id }, _houseMapper.MapToDto(houseEntity));
+                return CreatedAtRoute("GetSingleUser", new { id = userEntity.Id }, _userMapper.MapToDto(userEntity));
             }
             catch (Exception exception)
             {
@@ -127,11 +127,11 @@ namespace SampleWebApiAspNetCore.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Update(int id, [FromBody] HouseDto houseDto)
+        public IActionResult Update(int id, [FromBody] UserDto userDto)
         {
             try
             {
-                if (houseDto == null)
+                if (userDto == null)
                 {
                     return BadRequest();
                 }
@@ -141,20 +141,26 @@ namespace SampleWebApiAspNetCore.Controllers
                     return BadRequest(ModelState);
                 }
 
-                HouseEntity houseEntityToUpdate = _houseRepository.GetSingle(id);
+                UserEntity userEntityToUpdate = _userRepository.GetSingle(id);
 
-                if (houseEntityToUpdate == null)
+                if (userEntityToUpdate == null)
                 {
                     return NotFound();
                 }
 
-                houseEntityToUpdate.ZipCode = houseDto.ZipCode;
-                houseEntityToUpdate.Street = houseDto.Street;
-                houseEntityToUpdate.City = houseDto.City;
+                userEntityToUpdate.Name = userDto.Name;
+                userEntityToUpdate.LastName = userDto.LastName;
+                userEntityToUpdate.Email = userDto.Email;
+                userEntityToUpdate.Password = userDto.Password;
+                userEntityToUpdate.emailValidated = userDto.emailValidated;
+                userEntityToUpdate.Birthday = userDto.Birthday;
+                userEntityToUpdate.City = userDto.City;
+                userEntityToUpdate.Rg = userDto.Rg;
+                userEntityToUpdate.Cpf = userDto.Cpf;
 
-                _houseRepository.Update(houseEntityToUpdate);
+                _userRepository.Update(userEntityToUpdate);
 
-                return Ok(_houseMapper.MapToDto(houseEntityToUpdate));
+                return Ok(_userMapper.MapToDto(userEntityToUpdate));
             }
             catch (Exception exception)
             {
@@ -168,14 +174,14 @@ namespace SampleWebApiAspNetCore.Controllers
         {
             try
             {
-                HouseEntity houseEntityToDelete = _houseRepository.GetSingle(id);
+                UserEntity userEntityToDelete = _userRepository.GetSingle(id);
 
-                if (houseEntityToDelete == null)
+                if (userEntityToDelete == null)
                 {
                     return NotFound();
                 }
 
-                _houseRepository.Delete(id);
+                _userRepository.Delete(id);
 
                 return NoContent();
             }

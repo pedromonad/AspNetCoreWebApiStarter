@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SampleWebApiAspNetCore.Models;
-using SampleWebApiAspNetCore.Repositories;
-using SampleWebApiAspNetCore.Services;
+using AspNetCoreWebApiStarter.Models;
+using AspNetCoreWebApiStarter.Repositories;
+using AspNetCoreWebApiStarter.Services;
 
-namespace SampleWebApiAspNetCore
+namespace AspNetCoreWebApiStarter
 {
     public class Startup
     {
@@ -30,9 +30,9 @@ namespace SampleWebApiAspNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHouseRepository, HouseRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
 
-            services.AddTransient<IHouseMapper, HouseMapper>();
+            services.AddTransient<IUserMapper, UserMapper>();
             // Add framework services.
             services.AddMvc();
         }
