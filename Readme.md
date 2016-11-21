@@ -8,54 +8,55 @@ Hope this helps.
 
 See the examples here: 
 
-## GET all houses
+## GET all users
 
-``` http://localhost:29435/api/house ```
+``` http://localhost:3000/api/user ```
 
 ## GET single house
 
-``` http://localhost:29435/api/house/1 ```
+``` http://localhost:3000/api/user/1 ```
 
 
-## POST a house
+## POST a user
 
-``` http://localhost:29435/api/house ```
+``` http://localhost:3000/api/house ```
 
 ````javascript
   {
-    "street": "MyNewStreet",
-    "city": "MyHomeTown",
-    "zipCode": 1234
+    Name = "Pedro",
+    LastName = "Barros",
+    Email = "pedroaugust8@live.com",
+    Password = "250494",
+    emailValidated = false,
+    Birthday = "2001-10-26T19:32:52+00:00",  
+    City = "Araraquara",
+    Rg = "4040404-4",
+    Cpf = "132132132"
   }
 ```
 
 
-## PUT a house
+## PUT a user
 
-``` http://localhost:29435/api/house/5 ```
+``` http://localhost:3000/api/user/5 ```
 
 ````javascript
 {
-    "id": 5,
-    "street": "HAAALELUJAH",
-    "city": "HAAALELUJAH-TOWN",
-    "zipCode": 1234657
+    Id = 1,
+    Name = "Pedro",
+    LastName = "Barros",
+    Email = "pedroaugust8@live.com",
+    Password = "250494",
+    emailValidated = false,
+    Birthday = "2001-10-26T19:32:52+00:00",  
+    City = "Araraquara",
+    Rg = "4040404-4",
+    Cpf = "132132132"
 }
 ```
 
+## DELETE a user
 
-## PATCH a house
-
-``` http://localhost:29435/api/house/4 ```
-
-````javascript
-[
-    { "op": "replace", "path": "/street", "value": "PatchStreet" }
-]
-```
-
-## DELETE a house
-
-``` http://localhost:29435/api/house ```
+``` http://localhost:3000/api/user ```
 
 
