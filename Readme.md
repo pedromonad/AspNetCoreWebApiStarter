@@ -36,7 +36,7 @@ See the examples here:
 
 ## PUT a user
 
-``` http://localhost:29435/api/user/5 ```
+``` http://localhost:29435/api/user/1 ```
 
 ````javascript
 {
