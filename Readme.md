@@ -12,13 +12,10 @@ See the examples here:
 
 ``` http://localhost:29435/api/house ```
 
-![ASPNETCOREWebAPIGET](./_gitAssets/get.jpg)
-
 ## GET single house
 
 ``` http://localhost:29435/api/house/1 ```
 
-![ASPNETCOREWebAPIGET](./_gitAssets/getSingle.jpg)
 
 ## POST a house
 
@@ -32,7 +29,6 @@ See the examples here:
   }
 ```
 
-![ASPNETCOREWebAPIGET](./_gitAssets/post.jpg)
 
 ## PUT a house
 
@@ -47,8 +43,6 @@ See the examples here:
 }
 ```
 
-![ASPNETCOREWebAPIGET](./_gitAssets/put.jpg)
-
 
 ## PATCH a house
 
@@ -60,11 +54,8 @@ See the examples here:
 ]
 ```
 
-![ASPNETCOREWebAPIGET](./_gitAssets/patch.jpg)
-
 ## DELETE a house
 
 ``` http://localhost:29435/api/house ```
 
 
-![ASPNETCOREWebAPIGET](./_gitAssets/delete.jpg)# AspNetCoreWebApiStarter
