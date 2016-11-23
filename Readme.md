@@ -1,4 +1,4 @@
-# ASP.NET Core WebApi Starter
+# ASP.NET Core Web-Api Starter
 
 In this repository I want to give a plain starting point at how to build a WebAPI with ASP.NET Core 1.0.
 
