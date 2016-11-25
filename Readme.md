@@ -1,6 +1,6 @@
 # ASP.NET Core Web-Api Starter
 
-In this repository I want to give a plain starting point at how to build a WebAPI with ASP.NET Core 1.0.
+Starter to build a WebAPI with ASP.NET Core 1.0.
 
 This repository contains a controller which is dealing with houses. You can GET/POST/PUT and DELETE them.
 
